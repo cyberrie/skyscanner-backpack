@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@skyscanner/backpack-react-scripts": "10.4.0"
+    "@skyscanner/backpack-react-scripts": "10.4.0",
+    "sass": "^1.62.1"
   },
   "scripts": {
     "start": "react-scripts start",
