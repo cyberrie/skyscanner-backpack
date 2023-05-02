@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@skyscanner/backpack-react-scripts": "10.4.0",
+    "moment": "^2.29.4",
     "sass": "^1.62.1"
   },
   "scripts": {
@@ -28,6 +29,7 @@
   },
   "devDependencies": {
     "@skyscanner/backpack-web": "^15.1.0",
+    "bpk-component-calendar": "^13.1.2",
     "bpk-mixins": "^36.2.0",
     "bpk-stylesheets": "^7.2.16",
     "react": "^17.0.2",
