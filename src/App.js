@@ -24,7 +24,7 @@ const App = () => (
     </header>
     <main className={getClassName("App__main")}>
       <BpkText tagName="p" className={getClassName("App__text")}>
-        Please select your travel dates on the calendar below.
+        Please select your travel dates in the calendar below.
       </BpkText>
       <Calendar className={getClassName("App__calendar")} />
       <BpkButton

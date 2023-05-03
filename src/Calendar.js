@@ -71,6 +71,7 @@ const Calendar = () => {
   });
 
   const handleDateSelect = (date) => {
+    // If there's no start date yet, set the start date to the selected date.
     if (!startDate) {
       setStartDate(date);
       setSelectionConfiguration({
@@ -79,18 +80,34 @@ const Calendar = () => {
         startDate: date,
         endDate: null,
       });
-    } else if (!endDate) {
-      setSelectionConfiguration({
-        ...selectionConfiguration,
-        endDate: date,
-      });
-    } else {
+    }
+    // If there's a start date but no end date, check if the selected date is within the range.
+    // If so, set the end date to the selected date. Otherwise, reset the start date to the selected date.
+    else if (!endDate) {
+      if (date >= startDate) {
+        setSelectionConfiguration({
+          ...selectionConfiguration,
+          endDate: date,
+        });
+      } else {
+        setStartDate(date);
+        setSelectionConfiguration({
+          ...selectionConfiguration,
+          startDate: date,
+          endDate: null,
+        });
+      }
+    }
+    // If there's both a start date and an end date and the selected date is outside of the range,
+    // reset the selection to only the start date.
+    else {
       setStartDate(date);
       setEndDate(null);
       setSelectionConfiguration({
         ...selectionConfiguration,
-        startDate: date,
         endDate: null,
+        startDate: date,
+        type: CALENDAR_SELECTION_TYPE.range,
       });
     }
   };
