@@ -58,54 +58,63 @@ const daysOfWeek = [
 
 const Calendar = () => {
   //define states
-  //date
-  const [selectedDate, setSelectedDate] = useState(null);
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
+  const [selectionType, setSelectionType] = useState(null);
 
   //config as date range
   const [selectionConfiguration, setSelectionConfiguration] = useState({
-    type: CALENDAR_SELECTION_TYPE.range,
+    type: null,
     startDate: null,
     endDate: null,
+    selectionType: false,
   });
 
-  //date range states
-  const [startDate, setStartDate] = useState(null);
-  const [endDate, setEndDate] = useState(null);
-
-  //handle date selection
   const handleDateSelect = (date) => {
-    setSelectedDate(date);
-  };
-
-  //handle input change
-  const handleInputChange = (event) => {
-    setSelectedDate(moment(event.target.value, "DD-MM-YYYY").toDate());
+    if (!startDate) {
+      setStartDate(date);
+      setSelectionConfiguration({
+        ...selectionConfiguration,
+        type: CALENDAR_SELECTION_TYPE.range,
+        startDate: date,
+        endDate: null,
+      });
+    } else if (!endDate) {
+      setSelectionConfiguration({
+        ...selectionConfiguration,
+        endDate: date,
+      });
+    } else {
+      setStartDate(date);
+      setEndDate(null);
+      setSelectionConfiguration({
+        ...selectionConfiguration,
+        startDate: date,
+        endDate: null,
+      });
+    }
   };
 
   return (
-    <div>
-      {/* input */}
-      <BpkInput
-        id="dateInput"
-        name="date"
-        type={INPUT_TYPES.text}
-        value={selectedDate ? moment(selectedDate).format("DD-MM-YYYY") : ""}
-        onChange={handleInputChange}
-      />
+    <>
       {/* calendar */}
-      <BpkCalendar
-        id="calendar"
-        onDateSelect={handleDateSelect}
-        formatMonth={formatMonth}
-        formatDateFull={formatDateFull}
-        daysOfWeek={daysOfWeek}
-        weekStartsOn={1}
-        changeMonthLabel="Change month"
-        nextMonthLabel="Next month"
-        previousMonthLabel="Previous month"
-        selectionConfiguration={setSelectionConfiguration}
-      />
-    </div>
+      <table>
+        <caption>Calendar</caption>
+        <BpkCalendar
+          id="calendar"
+          onDateSelect={handleDateSelect}
+          formatMonth={formatMonth}
+          formatDateFull={formatDateFull}
+          daysOfWeek={daysOfWeek}
+          weekStartsOn={1}
+          changeMonthLabel="Change month"
+          nextMonthLabel="Next month"
+          previousMonthLabel="Previous month"
+          selectionType={selectionType}
+          selectionConfiguration={selectionConfiguration}
+        />
+      </table>
+    </>
   );
 };
 

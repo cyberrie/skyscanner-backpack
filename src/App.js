@@ -26,8 +26,13 @@ const App = () => (
       <BpkText tagName="p" className={getClassName("App__text")}>
         Please select your travel dates on the calendar below.
       </BpkText>
-      <Calendar />
-      <BpkButton onClick={() => alert("It works!")}>Continue</BpkButton>
+      <Calendar className={getClassName("App__calendar")} />
+      <BpkButton
+        className={getClassName("App__button")}
+        onClick={() => alert("It works!")}
+      >
+        Continue
+      </BpkButton>
     </main>
   </div>
 );

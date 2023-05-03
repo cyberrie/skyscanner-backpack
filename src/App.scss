@@ -1,15 +1,18 @@
-@import '~bpk-mixins';
+@import "~bpk-mixins";
 
 @mixin container {
-  max-width: $bpk-breakpoint-desktop;
+  max-width: 600px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .App {
   text-align: center;
 
   &__header {
-    padding: $bpk-spacing-lg * 2;
+    padding: $bpk-spacing-lg * 1.5;
     background-color: $bpk-color-sky-blue;
     background-image: $bpk-primary-gradient;
     color: $bpk-color-white;
@@ -36,10 +39,15 @@
   }
 
   &__heading {
-    margin-bottom: $bpk-spacing-sm;
+    margin-bottom: $bpk-spacing-xl;
   }
 
   &__text {
-    margin-bottom: $bpk-spacing-sm;
+    margin-bottom: $bpk-spacing-xl;
+    font-size: 20px;
+  }
+
+  &__button {
+    margin-top: $bpk-spacing-xl;
   }
 }
